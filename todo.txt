@@ -1,0 +1,27 @@
+1. 사용 모듈
+css - styled-components
+전역 상태 - redux
+페이지 이동 - react-router-dom
+데이터 - fetch
+
+2. 폴더 구조(실사용 위주 구조)
+
+# hyudae-point
+    public (배포)
+        asset (이미지)
+    src
+        components
+            Header
+                Styled.Header.js
+                Header.js
+            Footer
+                Styled.Footer.js
+                Footer.js
+            QuikBar
+                Styled.QuikBar.js
+                QuikBar.js
+        page
+            Main
+            Stack
+            Benefit
+    App.js (최종 앱)
