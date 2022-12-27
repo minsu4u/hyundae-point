@@ -10,6 +10,7 @@ export const AppDownLoadContainer = styled.div`
   transition: all 0.3s;
   left: 0;
   top: 0;
+  z-index: 1;
   ${(props) =>
     props.open &&
     css`

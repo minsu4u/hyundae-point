@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-export const Nav = styled.section`
+export const Nav = styled.header`
   position: fixed;
   min-width: 280px;
   width: 100%;

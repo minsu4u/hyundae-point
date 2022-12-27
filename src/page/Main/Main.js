@@ -1,12 +1,16 @@
 import React from "react";
+import Slider from "../../components/Main/MainSlider/Slider";
+import { ContentsBg, ContentsInner } from "../../GlobalStyle";
 
 function Main() {
   // html
   // MainSection<section> > MainContents({bgColor, innerSection})<article>
   return (
-    <section>
-      {/* <MainContents bgColor={bgColor} inner={inner}></MainContents> */}
-    </section>
+    <ContentsBg bgColor="#fff">
+      <ContentsInner>
+        <Slider />
+      </ContentsInner>
+    </ContentsBg>
   );
 }
 

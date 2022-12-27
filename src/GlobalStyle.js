@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, css } from "styled-components";
 import fonts from "./font";
 // todo
 // 1. GlobalStyle
@@ -21,5 +21,25 @@ export const Container = styled.section`
   min-width: 280px;
   margin: 0 auto;
   position: relative;
+  padding-top: 120px;
 `;
+export const ContentsBg = styled.div`
+  ${({ bgColor }) =>
+    bgColor &&
+    css`
+      background-color: ${bgColor};
+    `}
+`;
+export const ContentsInner = styled.div`
+  position: relative;
+  margin: 0 auto;
+  ${(props) =>
+    props &&
+    css`
+      max-width: ${props.max};
+      min-width: ${props.min};
+      padding: ${props.pd};
+    `}
+`;
+
 export default GlobalStyle;
