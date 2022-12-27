@@ -17,11 +17,20 @@ css - styled-components
             Footer
                 Styled.Footer.js
                 Footer.js
+            Modal
+                Styled.AppDownLoadModal.js
+                AppDownLoadModal.js
             QuikBar
                 Styled.QuikBar.js
                 QuikBar.js
+            ScrollTopBtn
+                Styled.ScrollTopBtn.js
+                ScrollTopBtn.js
         page
             Main
             Stack
             Benefit
     App.js (최종 앱)
+    GlobalStyle.js
+
+    

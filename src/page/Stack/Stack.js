@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Outlet, Route, Routes } from "react-router-dom";
 import SubPage from "./SubPage/SubPage";
 
 function Stack() {
@@ -7,10 +7,11 @@ function Stack() {
     <div>
       Stack
       <button>
-        <Link to="SubPage">서브페이지 이동 버튼</Link>
+        <Link to="/Stack/SubPage">서브페이지 이동 버튼</Link>
       </button>
+      {/* <Outlet /> */}
       <Routes>
-        <Route path="SubPage" element={<SubPage />} />
+        <Route path=":subname" element={<SubPage />} />
       </Routes>
     </div>
   );
