@@ -9,11 +9,21 @@ export const SliderTransForm = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
+  ${({ currentIndex, slideReset }) =>
+    !slideReset
+      ? css`
+          transform: translateX(-${100 * currentIndex}%);
+          transition: transform 0.3s linear;
+        `
+      : css`
+          transform: translateX(-${100 * currentIndex}%);
+          transition: none;
+        `}
 `;
 export const SliderImg = styled.div`
   min-width: 100%;
   height: 100%;
-
+  position: relative;
   ${(props) =>
     props.img &&
     css`
@@ -25,6 +35,7 @@ export const SliderTxt = styled.div`
   left: 85px;
   top: 50%;
   transform: translateY(-50%);
+  white-space: pre-line;
   h1 {
     color: #fff;
     font-size: 60px;
@@ -75,18 +86,27 @@ export const SliderProgressbar = styled.div`
   margin-right: 8px;
 `;
 export const SliderGauge = styled.div`
-  width: 10%;
   height: 100%;
   background-color: #fff;
   transition: all 0.5s;
+  ${({ pagNationNum }) =>
+    pagNationNum &&
+    css`
+      width: ${25 * pagNationNum}%;
+    `}
 `;
 export const SliderCount = styled.div`
   margin-right: 20px;
-  & > p {
-    font-family: "SCDream";
-    font-weight: 600;
-    font-size: 22px;
-    color: #fff;
+
+  & > p,
+  & > p > span {
+    font-family: "SCDream" !important;
+    font-weight: 600 !important;
+    font-size: 22px !important;
+    color: #fff !important;
+    & > span {
+      opacity: 0.5;
+    }
   }
 `;
 export const SliderPlayPause = styled.div`
