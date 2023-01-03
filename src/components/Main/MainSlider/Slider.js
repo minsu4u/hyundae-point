@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import {
   SliderContainer,
   SliderCount,
@@ -15,80 +15,39 @@ import {
 } from "./Styled.Slider";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { VscDebugPause, VscPlay } from "react-icons/vsc";
+import useInterval from "./useInterval";
 
-function Slider() {
-  // 슬라이드 이벤트
-  // #. 슬라이드 버튼을 누르면 슬라이드 너비 만큼 이동
-  // 대상: SliderTransForm
-  // 시점: SliderPrev click 후
-  // 이벤트: SliderTransForm transform: translateX(`${SliderImg.넓이}`px)
-  {
-    // 타입
-    // type: [
-    //   {
-    //     id: 1,
-    //     wd: 1,
-    //   },
-    //   {},
-    //   {},
-    // ]
-    // 아이디
-    // 넓이
-    // 이미지
-    // 좌우 버튼
-    // 페이지 네이션
-  }
-  const slideData = [
-    {
-      id: 1,
-      img: "mainSlideImg1.png",
-      h1Txt: "현대백화점그룹의 \n 다양한 제휴사를 만나보세요!",
-      pTxt: "다양한 브랜드에서 적립하고 사용하는 \n 즐거운 일상의 H.Point!",
-    },
-    {
-      id: 2,
-      img: "mainSlideImg2.png",
-      h1Txt: "새롭게 달라진 H.Point Web 사이트!!",
-      pTxt: "Web에서 만나는 더 트랜디한 매거진, \n 핫이슈를 만나고 즐거운 혜택을 받아보세요.",
-    },
-    {
-      id: 3,
-      img: "mainSlideImg3.png",
-      h1Txt: "일상을 바꾸는 \n 즐거운 소비습관",
-      pTxt: "쇼핑이 미션이 되고, 걸음이 포인트가 되는 \n 즐거운 일상으로 초대합니다.",
-    },
-    {
-      id: 4,
-      img: "mainSlideImg4.png",
-      h1Txt: "쿠폰 받고 할일 받는 \n 혜택 이벤트!",
-      pTxt: "혼자 알기 아쉬운 이벤트, 친구에게 공유해보세요!",
-    },
-  ];
+function Slider({ slideItems }) {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [slideReset, setSlideReset] = useState(false);
   const [slidePlay, setSlidePlay] = useState(true);
+
+  let slideMaxLen = slideItems.length - 1;
+
+  const cloneElement = () => {
+    let prevData = {
+      ...slideItems[slideMaxLen],
+      id: slideItems[0].id - 1,
+    };
+    let nextData = {
+      ...slideItems[0],
+      id: slideItems[slideMaxLen].id + 1,
+    };
+    return [prevData, ...slideItems, nextData];
+  };
+
+  let newData = cloneElement();
+
   const pagNation = () => {
     if (!(currentIndex === 0 || currentIndex === 5)) return currentIndex;
     if (currentIndex === 0) return 4;
     if (currentIndex === 5) return 1;
   };
   const pagNationNum = pagNation();
-  const slideMaxLen = slideData.length - 1;
-  let interval;
 
-  const cloneElement = () => {
-    let prevData = {
-      ...slideData[slideMaxLen],
-      id: slideData[0].id - 1,
-    };
-    let nextData = { ...slideData[0], id: slideData[slideMaxLen].id + 1 };
-    return [prevData, ...slideData, nextData];
-  };
-  const newData = cloneElement();
-
-  const sliderPrevHandler = (direction) => {
+  const sliderPrevHandler = (val) => {
     if (slideReset) setSlideReset(false);
-    setCurrentIndex((preValue) => preValue - direction);
+    setCurrentIndex((preValue) => preValue - val);
     if (currentIndex < 2) {
       setTimeout(() => {
         setSlideReset(true);
@@ -96,9 +55,9 @@ function Slider() {
       }, 300);
     }
   };
-  const sliderNextHandler = (direction) => {
+  const sliderNextHandler = (val) => {
     if (slideReset) setSlideReset(false);
-    setCurrentIndex((preValue) => preValue + direction);
+    setCurrentIndex((preValue) => preValue + val);
     if (currentIndex > slideMaxLen) {
       setTimeout(() => {
         setSlideReset(true);
@@ -107,47 +66,29 @@ function Slider() {
     }
   };
 
-  const savedCur = useRef(1);
-  const savedReset = useRef(false);
+  let delayTime = slidePlay ? 2000 : null;
 
   const autoPlayEvent = () => {
-    if (savedReset.current) setSlideReset(false);
-    setCurrentIndex((savedCur.current += 1));
-    if (savedCur.current > slideMaxLen + 1) {
-      clearInterval(interval);
-      console.log(interval, "1");
+    if (slideReset) setSlideReset(false);
+    setCurrentIndex(currentIndex + 1);
+    if (currentIndex > slideMaxLen) {
+      delayTime = null;
       setTimeout(() => {
-        setSlideReset((savedReset.current = true));
-        setCurrentIndex((savedCur.current = 1));
-        autoPlay({ duration: 2000 });
+        setSlideReset(true);
+        setCurrentIndex(1);
+        delayTime = 2000;
       }, 1000);
     }
   };
-  const autoPlay = ({ duration }) => {
-    interval = setInterval(autoPlayEvent, duration);
-  };
 
-  const playPauseHandler = () => {
-    setSlidePlay(!slidePlay);
-    if (slidePlay) {
-      clearInterval(interval);
-      console.log(interval, "2");
-    } else {
-      autoPlay({ duration: 2000 });
-    }
-  };
+  const playPauseHandler = () => setSlidePlay(!slidePlay);
 
-  useEffect(() => {}, []);
-
-  useEffect(() => {
-    autoPlay({ duration: 2000 });
-    return () => clearInterval(interval);
-  }, []);
+  useInterval(autoPlayEvent, delayTime);
 
   return (
     <SliderContainer>
       <SliderTransForm currentIndex={currentIndex} slideReset={slideReset}>
-        {newData.map((item) => (
+        {newData?.map((item) => (
           <SliderImg key={item.id} img={item.img}>
             <SliderTxt>
               <h1>{item.h1Txt}</h1>
@@ -171,7 +112,7 @@ function Slider() {
         <SliderCount>
           <p>
             {pagNationNum}
-            <span> - 4</span>
+            <span> - {slideMaxLen + 1}</span>
           </p>
         </SliderCount>
         <SliderPlayPause onClick={playPauseHandler}>
