@@ -4,6 +4,7 @@ export const SliderContainer = styled.article`
   width: 100%;
   height: 780px;
   overflow: hidden;
+  position: relative;
 `;
 export const SliderTransForm = styled.div`
   display: flex;

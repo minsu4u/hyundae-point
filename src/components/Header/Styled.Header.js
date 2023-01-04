@@ -9,7 +9,7 @@ export const Nav = styled.header`
   background-color: #fff;
   border-bottom: 1px solid #eeeeee;
   transition: border 0.3s;
-  z-index: 1;
+  z-index: 6;
   ${(props) =>
     props.Hover
       ? css`
@@ -157,6 +157,7 @@ export const NavHoverBackGround = styled.div`
   opacity: 0;
   position: fixed;
   transition: all 0.2s;
+  z-index: 5;
   ${(props) =>
     props.Hover &&
     css`

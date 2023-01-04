@@ -12,12 +12,12 @@ import {
   SliderState,
   SliderTransForm,
   SliderTxt,
-} from "./Styled.Slider";
+} from "./Styled.SliderType1";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { VscDebugPause, VscPlay } from "react-icons/vsc";
 import useInterval from "./useInterval";
 
-function Slider({ slideItems }) {
+function SliderType1({ slideItems }) {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [slideReset, setSlideReset] = useState(false);
   const [slidePlay, setSlidePlay] = useState(true);
@@ -123,4 +123,4 @@ function Slider({ slideItems }) {
   );
 }
 
-export default Slider;
+export default SliderType1;
