@@ -24,10 +24,11 @@ export const Container = styled.section`
   padding-top: 120px;
 `;
 export const ContentsBg = styled.div`
-  ${({ bgColor }) =>
-    bgColor &&
+  ${({ ...props }) =>
+    props.bgColor &&
     css`
-      background-color: ${bgColor};
+      height: ${props.hg}px;
+      background-color: ${props.bgColor};
     `}
 `;
 export const ContentsInner = styled.div`
@@ -36,8 +37,8 @@ export const ContentsInner = styled.div`
   ${(props) =>
     props &&
     css`
-      max-width: ${props.max};
-      min-width: ${props.min};
+      max-width: ${props.max}px;
+      min-width: ${props.min}px;
       padding: ${props.pd};
     `}
 `;

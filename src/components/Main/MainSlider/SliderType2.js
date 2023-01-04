@@ -4,12 +4,17 @@ import {
   SliderCount,
   SliderGauge,
   SliderImg,
+  SliderImgBox,
+  SliderImgGroup,
+  SliderImgLink,
   SliderNav,
   SliderNext,
   SliderPlayPause,
   SliderPrev,
   SliderProgressbar,
+  SliderSizeImg,
   SliderState,
+  SliderTitle,
   SliderTransForm,
   SliderTxt,
 } from "./Styled.SliderType2";
@@ -17,31 +22,31 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { VscDebugPause, VscPlay } from "react-icons/vsc";
 import useInterval from "./useInterval";
 
-function SliderType2({ slideItems }) {
+function SliderType2({ slideItems2 }) {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [slideReset, setSlideReset] = useState(false);
   const [slidePlay, setSlidePlay] = useState(true);
 
-  let slideMaxLen = slideItems.length - 1;
+  let slideMaxLen = slideItems2.length - 1;
 
   const cloneElement = () => {
     let prevData = {
-      ...slideItems[slideMaxLen],
-      id: slideItems[0].id - 1,
+      ...slideItems2[slideMaxLen],
+      id: slideItems2[0].id - 1,
     };
     let nextData = {
-      ...slideItems[0],
-      id: slideItems[slideMaxLen].id + 1,
+      ...slideItems2[0],
+      id: slideItems2[slideMaxLen].id + 1,
     };
-    return [prevData, ...slideItems, nextData];
+    return [prevData, ...slideItems2, nextData];
   };
 
   let newData = cloneElement();
 
   const pagNation = () => {
-    if (!(currentIndex === 0 || currentIndex === 5)) return currentIndex;
-    if (currentIndex === 0) return 4;
-    if (currentIndex === 5) return 1;
+    if (!(currentIndex === 0 || currentIndex === 4)) return currentIndex;
+    if (currentIndex === 0) return 3;
+    if (currentIndex === 4) return 1;
   };
   const pagNationNum = pagNation();
 
@@ -51,7 +56,7 @@ function SliderType2({ slideItems }) {
     if (currentIndex < 2) {
       setTimeout(() => {
         setSlideReset(true);
-        setCurrentIndex(4);
+        setCurrentIndex(3);
       }, 300);
     }
   };
@@ -87,14 +92,25 @@ function SliderType2({ slideItems }) {
 
   return (
     <SliderContainer>
+      <SliderTitle>지금 가장 인기 있는 이벤트</SliderTitle>
       <SliderTransForm currentIndex={currentIndex} slideReset={slideReset}>
         {newData?.map((item) => (
-          <SliderImg key={item.id} img={item.img}>
-            <SliderTxt>
-              <h1>{item.h1Txt}</h1>
-              <p>{item.pTxt}</p>
-            </SliderTxt>
-          </SliderImg>
+          <SliderImgGroup key={item.id}>
+            <SliderImgBox>
+              <SliderImgLink to="/">
+                <SliderSizeImg src="./asset/image/ratio_event.gif" alt="" />
+                <SliderImg img={item.order[0].img} />
+              </SliderImgLink>
+              <SliderTxt>{item.order[0].pTxt}</SliderTxt>
+            </SliderImgBox>
+            <SliderImgBox>
+              <SliderImgLink to="/">
+                <SliderSizeImg src="./asset/image/ratio_event.gif" alt="" />
+                <SliderImg img={item.order[1].img} />
+              </SliderImgLink>
+              <SliderTxt>{item.order[1].pTxt}</SliderTxt>
+            </SliderImgBox>
+          </SliderImgGroup>
         ))}
       </SliderTransForm>
       <SliderNav>

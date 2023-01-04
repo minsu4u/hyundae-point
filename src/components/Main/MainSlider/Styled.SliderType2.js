@@ -1,16 +1,26 @@
 import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 
 export const SliderContainer = styled.article`
-  max-width: 1284px;
-  min-width: 280px;
+  width: 100%;
   height: 780px;
   overflow: hidden;
   position: relative;
+  margin: 0 auto;
+  padding: 120px 0 90px;
+`;
+
+export const SliderTitle = styled.h1`
+  color: #fff;
+  font-family: "SCDream";
+  font-weight: 800;
+  font-size: 52px;
+  margin-bottom: 50px;
 `;
 export const SliderTransForm = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
+  height: auto;
   ${({ currentIndex, slideReset }) =>
     !slideReset
       ? css`
@@ -22,35 +32,72 @@ export const SliderTransForm = styled.div`
           transition: none;
         `}
 `;
+
+export const SliderImgGroup = styled.div`
+  display: flex;
+  justify-content: center;
+  min-width: 100%;
+`;
+export const SliderImgBox = styled.div`
+  width: calc(50% - 25px);
+  position: relative;
+  &:first-child {
+    margin-right: 25px;
+  }
+`;
+
+export const SliderSizeImg = styled.img`
+  width: 100%;
+`;
+
 export const SliderImg = styled.div`
   min-width: 100%;
   height: 100%;
-  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 5px 10px 3px rgba(31, 31, 31, 0.2);
+  position: absolute;
+  left: 0;
+  top: 0;
   ${(props) =>
     props.img &&
     css`
       background: url("./asset/image/${props.img}") no-repeat center / cover;
     `}
 `;
+export const SliderImgLink = styled(Link)`
+  position: relative;
+  display: block;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    background: #000;
+    opacity: 0;
+    transition: 0.3s;
+  }
+  &:hover {
+    &::after {
+      opacity: 0.3;
+    }
+    transform: translateY(-10px);
+  }
+`;
+
 export const SliderTxt = styled.div`
-  position: absolute;
-  left: 85px;
-  top: 50%;
-  transform: translateY(-50%);
+  position: relative;
   white-space: pre-line;
-  h1 {
-    color: #fff;
-    font-size: 60px;
-    font-weight: 800px;
-    line-height: 80px;
-    margin-bottom: 60px;
-  }
-  p {
-    color: #fff;
-    font-size: 22px;
-    font-weight: 400px;
-    line-height: 34px;
-  }
+  font-family: "SCDream";
+  font-weight: 800;
+  font-size: 26px;
+  color: #fff;
+  text-align: center;
+  margin-top: 50px;
 `;
 
 export const SliderNav = styled.div`
@@ -75,8 +122,8 @@ export const SliderNext = styled.button`
 `;
 export const SliderState = styled.div`
   position: absolute;
-  left: 80px;
-  bottom: 180px;
+  right: 30px;
+  top: 160px;
   display: flex;
   align-items: center;
 `;
@@ -99,7 +146,6 @@ export const SliderGauge = styled.div`
 `;
 export const SliderCount = styled.div`
   margin-right: 20px;
-
   & > p,
   & > p > span {
     font-family: "SCDream" !important;
