@@ -29,6 +29,7 @@ export const ContentsBg = styled.div`
     css`
       height: ${props.hg}px;
       background-color: ${props.bgColor};
+      padding: ${props.pd};
     `}
 `;
 export const ContentsInner = styled.div`

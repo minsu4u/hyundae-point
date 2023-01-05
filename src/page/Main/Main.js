@@ -25,7 +25,7 @@ function Main() {
           {slideItems.length && <SliderType1 slideItems={slideItems} />}
         </ContentsInner>
       </ContentsBg>
-      <ContentsBg bgColor="#603de3" hg="780">
+      <ContentsBg bgColor="#603de3" hg="780" pd="100px 0 110px">
         <ContentsInner max="1284" min="280">
           <MainBenefit />
         </ContentsInner>
