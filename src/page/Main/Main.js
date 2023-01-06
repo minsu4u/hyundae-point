@@ -8,6 +8,7 @@ import { ContentsBg, ContentsInner } from "../../GlobalStyle";
 function Main() {
   const [slideItems, setSlideItems] = useState([]);
   const [slideItems2, setSlideItems2] = useState([]);
+  const [mouseOver, setMouseOver] = useState("");
 
   useEffect(() => {
     const fetchGetData = async () => {
@@ -18,6 +19,7 @@ function Main() {
     };
     fetchGetData();
   }, []);
+  console.log(mouseOver);
   return (
     <>
       <ContentsBg bgColor="#fff">
@@ -30,9 +32,14 @@ function Main() {
           <MainBenefit />
         </ContentsInner>
       </ContentsBg>
-      <ContentsBg bgColor="#5ccdb5">
+      <ContentsBg bgColor="#5ccdb5" mouseOver={mouseOver}>
         <ContentsInner max="1284" min="280">
-          {slideItems2.length && <SliderType2 slideItems2={slideItems2} />}
+          {slideItems2.length && (
+            <SliderType2
+              slideItems2={slideItems2}
+              setMouseOver={setMouseOver}
+            />
+          )}
         </ContentsInner>
       </ContentsBg>
     </>

@@ -16,13 +16,14 @@ import {
   SliderState,
   SliderTitle,
   SliderTransForm,
+  SliderTransFormCover,
   SliderTxt,
 } from "./Styled.SliderType2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { VscDebugPause, VscPlay } from "react-icons/vsc";
 import useInterval from "./useInterval";
 
-function SliderType2({ slideItems2 }) {
+function SliderType2({ slideItems2, setMouseOver }) {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [slideReset, setSlideReset] = useState(false);
   const [slidePlay, setSlidePlay] = useState(true);
@@ -90,29 +91,46 @@ function SliderType2({ slideItems2 }) {
 
   useInterval(autoPlayEvent, delayTime);
 
+  const backgroundChangeHandler = (pos) => {
+    setMouseOver(pos);
+  };
   return (
     <SliderContainer>
       <SliderTitle>지금 가장 인기 있는 이벤트</SliderTitle>
-      <SliderTransForm currentIndex={currentIndex} slideReset={slideReset}>
-        {newData?.map((item) => (
-          <SliderImgGroup key={item.id}>
-            <SliderImgBox>
-              <SliderImgLink to="/">
-                <SliderSizeImg src="./asset/image/ratio_event.gif" alt="" />
-                <SliderImg img={item.order[0].img} />
-              </SliderImgLink>
-              <SliderTxt>{item.order[0].pTxt}</SliderTxt>
-            </SliderImgBox>
-            <SliderImgBox>
-              <SliderImgLink to="/">
-                <SliderSizeImg src="./asset/image/ratio_event.gif" alt="" />
-                <SliderImg img={item.order[1].img} />
-              </SliderImgLink>
-              <SliderTxt>{item.order[1].pTxt}</SliderTxt>
-            </SliderImgBox>
-          </SliderImgGroup>
-        ))}
-      </SliderTransForm>
+      <SliderTransFormCover>
+        <SliderTransForm currentIndex={currentIndex} slideReset={slideReset}>
+          {newData?.map((item) => (
+            <SliderImgGroup key={item.id}>
+              <SliderImgBox>
+                <SliderImgLink
+                  to="/"
+                  onMouseOver={() => backgroundChangeHandler("left")}
+                  onMouseOut={() => setMouseOver("")}
+                >
+                  <SliderSizeImg src="./asset/image/ratio_event.gif" alt="" />
+                  <SliderImg img={item.order[0].img} />
+                </SliderImgLink>
+                <SliderTxt>{item.order[0].pTxt}</SliderTxt>
+              </SliderImgBox>
+              <SliderImgBox>
+                <SliderImgLink
+                  to="/"
+                  onMouseOver={() => backgroundChangeHandler("right")}
+                  onMouseOut={() => setMouseOver("")}
+                >
+                  <SliderSizeImg src="./asset/image/ratio_event.gif" alt="" />
+                  {item.id === 3 ? (
+                    <p>더 많은 이벤트 보러가기</p>
+                  ) : (
+                    <SliderImg img={item.order[1].img} />
+                  )}
+                </SliderImgLink>
+                <SliderTxt>{item.order[1].pTxt}</SliderTxt>
+              </SliderImgBox>
+            </SliderImgGroup>
+          ))}
+        </SliderTransForm>
+      </SliderTransFormCover>
       <SliderNav>
         <SliderPrev onClick={() => sliderPrevHandler(1)}>
           <IoIosArrowBack />

@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 export const SliderContainer = styled.article`
   width: 100%;
-  height: 780px;
-  overflow: hidden;
+  /* height: 780px; */
+  /* overflow: hidden; */
   position: relative;
   margin: 0 auto;
-  padding: 120px 0 90px;
+  padding: 160px 0;
 `;
 
 export const SliderTitle = styled.h1`
@@ -17,10 +17,39 @@ export const SliderTitle = styled.h1`
   font-size: 52px;
   margin-bottom: 50px;
 `;
+export const SliderTransFormCover = styled.div`
+  max-width: 1280px;
+  min-width: 280px;
+  overflow: hidden;
+  padding-top: 10px;
+`;
 export const SliderTransForm = styled.div`
   display: flex;
   width: 100%;
   height: auto;
+  & > div:nth-child(4) {
+    & > div:nth-child(2) {
+      & > a {
+        background-color: #4e2bf4;
+        border-radius: 16px;
+        box-shadow: 0 5px 10px 3px rgba(31, 31, 31, 0.2);
+        position: relative;
+        & > p {
+          font-family: "SCDream";
+          font-weight: 800;
+          font-size: 26px;
+          color: #fff;
+          padding-right: 50px;
+          background: url(./asset/image/ic_arrow7.png) no-repeat right center /
+            auto;
+          position: absolute;
+          left: 47%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
   ${({ currentIndex, slideReset }) =>
     !slideReset
       ? css`
@@ -108,17 +137,17 @@ export const SliderNav = styled.div`
     background: transparent;
     font-size: 40px;
     top: 50%;
-    transform: translateY(-50%);
+    /* transform: translateY(-50%); */
     & > svg {
       fill: #fff;
     }
   }
 `;
 export const SliderPrev = styled.button`
-  left: 30px;
+  left: -120px;
 `;
 export const SliderNext = styled.button`
-  right: 30px;
+  right: -120px;
 `;
 export const SliderState = styled.div`
   position: absolute;
@@ -141,7 +170,7 @@ export const SliderGauge = styled.div`
   ${({ pagNationNum }) =>
     pagNationNum &&
     css`
-      width: ${25 * pagNationNum}%;
+      width: ${33.3 * pagNationNum}%;
     `}
 `;
 export const SliderCount = styled.div`

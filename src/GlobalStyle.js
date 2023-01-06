@@ -31,6 +31,16 @@ export const ContentsBg = styled.div`
       background-color: ${props.bgColor};
       padding: ${props.pd};
     `}
+  ${({ mouseOver }) =>
+    mouseOver === "left"
+      ? css`
+          background-color: rgb(237, 171, 207);
+        `
+      : mouseOver === "right"
+      ? css`
+          background-color: rgb(244, 179, 179);
+        `
+      : null}
 `;
 export const ContentsInner = styled.div`
   position: relative;

@@ -14,18 +14,49 @@ import {
   PlatformIcon,
   QrImg,
   MatchImgBtns,
+  MatchImgBtnActive,
 } from "./Styled.MainBenefit";
 
 function MainBenefit() {
-  const [matchImg, setMatchImg] = useState(1);
+  const [clickIdx, setClickIdx] = useState(1);
   const matchArray = Array.from(Array(4)).fill();
+  const MatchImgBtnData = [
+    {
+      id: 1,
+      txt: "APP 첫 로그인",
+      point: "1,000P",
+      icon: "benefit1.png",
+    },
+    {
+      id: 2,
+      txt: "평생회원 동의",
+      point: "1,000P",
+      icon: "benefit2.png",
+    },
+    {
+      id: 3,
+      txt: "Push ON",
+      point: "2,000P",
+      icon: "benefit3.png",
+    },
+    {
+      id: 4,
+      txt: "첫 적립 이벤트 참여",
+      point: "3,000P",
+      icon: "benefit4.png",
+    },
+  ];
+  const btnClickHandler = (e) => {
+    const num = parseInt(e.currentTarget.id);
+    setClickIdx(num);
+  };
   return (
     <BenefitContainer>
       <Contents1>
         <MatchImgBox>
           <img src="./asset/image/img_sign_benefit0.png" alt="" />
           {matchArray.map((item, idx) => (
-            <MatchImg key={idx}>
+            <MatchImg key={idx} clickOpacity={clickIdx === idx + 1}>
               <ImgCard
                 src={`./asset/image/img_sign_benefit${idx + 1}.png`}
                 alt={"imgCard" + idx}
@@ -33,6 +64,7 @@ function MainBenefit() {
               <ImgEffect
                 src={`./asset/image/img_benefit_obj${idx + 1}.png`}
                 alt={"imgEffect" + idx}
+                clickAni={clickIdx === idx + 1}
               />
             </MatchImg>
           ))}
@@ -55,14 +87,31 @@ function MainBenefit() {
           </span>
         </HeadingTitle>
         <MatchImgBtns>
-          <MatchImgBtn icon="ic_benefit1.png">
-            APP 첫 로그인
-            <br />
-            <em>1,000P</em>
-          </MatchImgBtn>
-          <span>평생회원 동의</span>
-          <span>Push ON</span>
-          <span>첫 적립 이벤트 참여</span>
+          {MatchImgBtnData.map((item, idx) =>
+            item.id === clickIdx ? (
+              <MatchImgBtnActive
+                id={item.id}
+                key={item.id}
+                icon={item.icon}
+                onClick={btnClickHandler}
+              >
+                {item.txt}
+                <br />
+                <em>{item.point}</em>
+              </MatchImgBtnActive>
+            ) : (
+              <MatchImgBtn
+                id={item.id}
+                key={item.id}
+                icon={item.icon}
+                onClick={btnClickHandler}
+              >
+                {item.txt}
+                <br />
+                <em>{item.point}</em>
+              </MatchImgBtn>
+            )
+          )}
         </MatchImgBtns>
         <AppDownLoadBtn>앱다운로드 바로가기</AppDownLoadBtn>
       </Contents2>

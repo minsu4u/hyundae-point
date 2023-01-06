@@ -16,21 +16,35 @@ export const MatchImg = styled.div`
   position: absolute;
   left: 0;
   top: 0;
+  opacity: 0;
+  ${({ clickOpacity }) =>
+    clickOpacity &&
+    css`
+      opacity: 1;
+    `}
 `;
 export const ImgCard = styled.img`
-  z-index: 2;
+  z-index: 1;
   position: relative;
 `;
 export const ImgEffect = styled.img`
   z-index: 1;
   position: absolute;
-  left: 0;
-  top: 0;
+  right: 0;
+  top: -15px;
+  transform: scale(0.5) rotate(-10deg);
+  transition: transform 0.3s, opacity 0.3s;
+  ${({ clickAni }) =>
+    clickAni &&
+    css`
+      transform: scale(1) rotate(0);
+    `}
 `;
 export const QrList = styled.article`
   position: absolute;
   left: 0;
   bottom: 0;
+  z-index: 2;
   & > span:first-child {
     margin-right: 10px;
   }
@@ -95,6 +109,7 @@ export const HeadingTitle = styled.div`
 export const MatchImgBtns = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   margin-bottom: 50px;
 `;
 export const MatchImgBtn = styled.span`
@@ -117,6 +132,10 @@ export const MatchImgBtn = styled.span`
   background-repeat: no-repeat;
   background-size: 34px 30px;
   background-position: 40px 45px;
+  &:hover,
+  &:hover > em {
+    color: #603de3;
+  }
   & > em {
     font-style: normal;
     font-size: 36px;
@@ -126,7 +145,24 @@ export const MatchImgBtn = styled.span`
   ${({ icon }) =>
     icon &&
     css`
-      background-image: url(./asset/image/${icon});
+      background-image: url(./asset/image/ic_${icon});
+    `}
+`;
+
+export const MatchImgBtnActive = styled(MatchImgBtn)`
+  background-color: #a289ff;
+  &,
+  & > em {
+    color: #fff;
+  }
+  &:hover,
+  &:hover > em {
+    color: #fff;
+  }
+  ${({ icon }) =>
+    icon &&
+    css`
+      background-image: url(./asset/image/ic_hover_${icon});
     `}
 `;
 
@@ -143,3 +179,8 @@ export const AppDownLoadBtn = styled.button`
   border: 0;
   border-radius: 8px;
 `;
+
+// todo
+// 클릭 탭 매치
+// 1. 클릭시 해당 버튼 배경, 글, 아이콘 변경
+// 클릭한 대상의 인덱스, 클릭여부 확인
