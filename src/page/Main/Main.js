@@ -3,6 +3,8 @@ import getDataFetch from "../../api/getDataFetch";
 import MainBenefit from "../../components/Main/MainBenefit/MainBenefit";
 import SliderType1 from "../../components/Main/MainSlider/SliderType1";
 import SliderType2 from "../../components/Main/MainSlider/SliderType2";
+import SliderType3 from "../../components/Main/MainSlider/SliderType3";
+import PointUse from "../../components/Main/PointUse/PointUse";
 import { ContentsBg, ContentsInner } from "../../GlobalStyle";
 
 function Main() {
@@ -22,7 +24,6 @@ function Main() {
     };
     fetchGetData();
   }, []);
-  console.log(mouseOver);
   return (
     <>
       <ContentsBg bgColor="#fff">
@@ -45,14 +46,19 @@ function Main() {
           )}
         </ContentsInner>
       </ContentsBg>
-      <ContentsBg bgColor="#5ccdb5">
+      <ContentsBg bgColor="#fff">
         <ContentsInner max="1284" min="280">
-          {slideItems2.length && (
-            <SliderType2
-              slideItems2={slideItems3}
+          {slideItems3.length && (
+            <SliderType3
+              slideItems3={slideItems3}
               setMouseOver={setMouseOver}
             />
           )}
+        </ContentsInner>
+      </ContentsBg>
+      <ContentsBg bgColor="#fafafa">
+        <ContentsInner max="1284" min="280">
+          <PointUse />
         </ContentsInner>
       </ContentsBg>
     </>

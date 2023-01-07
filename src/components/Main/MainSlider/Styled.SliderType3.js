@@ -9,88 +9,50 @@ export const SliderContainer = styled.article`
 `;
 
 export const SliderTitle = styled.h1`
-  color: #fff;
+  color: #111;
   font-family: "SCDream";
-  font-weight: 800;
+  font-weight: 600;
   font-size: 52px;
-  margin-bottom: 50px;
+  margin-bottom: 70px;
 `;
+export const SliderSubTitle = styled.span`
+  font-weight: 400;
+  font-size: 20px;
+`;
+
 export const SliderTransFormCover = styled.div`
-  max-width: 1280px;
+  width: 100%;
+  max-width: 1224px;
   min-width: 280px;
   overflow: hidden;
   padding-top: 10px;
+  margin: 0 auto;
 `;
 export const SliderTransForm = styled.div`
   display: flex;
   width: 100%;
   height: auto;
-  & > div:nth-child(4) {
-    & > div:nth-child(2) {
-      & > a {
-        background-color: #4e2bf4;
-        border-radius: 16px;
-        box-shadow: 0 5px 10px 3px rgba(31, 31, 31, 0.2);
-        position: relative;
-        & > p {
-          font-family: "SCDream";
-          font-weight: 800;
-          font-size: 26px;
-          color: #fff;
-          padding-right: 50px;
-          background: url(./asset/image/ic_arrow7.png) no-repeat right center /
-            auto;
-          position: absolute;
-          left: 47%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-        }
-      }
-    }
-  }
   ${({ currentIndex, slideReset }) =>
     !slideReset
       ? css`
-          transform: translateX(-${100 * currentIndex}%);
+          transform: translateX(-${20 * currentIndex}%);
           transition: transform 0.3s linear;
         `
       : css`
-          transform: translateX(-${100 * currentIndex}%);
+          transform: translateX(-${20 * currentIndex}%);
           transition: none;
         `}
 `;
 
-export const SliderImgGroup = styled.div`
-  display: flex;
-  justify-content: center;
-  min-width: 100%;
-`;
 export const SliderImgBox = styled.div`
-  width: calc(50% - 25px);
   position: relative;
-  &:first-child {
-    margin-right: 25px;
-  }
 `;
 
-export const SliderSizeImg = styled.img`
-  width: 100%;
-`;
-
-export const SliderImg = styled.div`
-  min-width: 100%;
+export const SliderImg = styled.img`
+  min-width: 408px;
+  min-width: 208px;
+  width: 208px;
   height: 100%;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 5px 10px 3px rgba(31, 31, 31, 0.2);
-  position: absolute;
-  left: 0;
-  top: 0;
-  ${(props) =>
-    props.img &&
-    css`
-      background: url("./asset/image/${props.img}") no-repeat center / cover;
-    `}
 `;
 export const SliderImgLink = styled(Link)`
   position: relative;
@@ -108,23 +70,26 @@ export const SliderImgLink = styled(Link)`
     opacity: 0;
     transition: 0.3s;
   }
-  &:hover {
-    &::after {
-      opacity: 0.3;
-    }
-    transform: translateY(-10px);
-  }
 `;
 
-export const SliderTxt = styled.div`
+export const SliderTxt = styled.p`
   position: relative;
   white-space: pre-line;
   font-family: "SCDream";
-  font-weight: 800;
-  font-size: 26px;
-  color: #fff;
+  font-weight: 600;
+  font-size: 30px;
+  color: #111;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 30px;
+`;
+export const SliderSubTxt = styled.span`
+  display: block;
+  font-family: "Noto Sans KR";
+  font-weight: 400;
+  font-size: 18px;
+  color: #999;
+  letter-spacing: -0.8px;
+  text-align: center;
 `;
 
 export const SliderNav = styled.div`
@@ -141,52 +106,16 @@ export const SliderNav = styled.div`
   }
 `;
 export const SliderPrev = styled.button`
-  left: -120px;
+  left: -40px;
 `;
 export const SliderNext = styled.button`
-  right: -120px;
+  right: -40px;
 `;
-export const SliderState = styled.div`
-  position: absolute;
-  right: 30px;
-  top: 160px;
-  display: flex;
-  align-items: center;
-`;
-export const SliderProgressbar = styled.div`
-  width: 140px;
-  height: 4px;
-  background-color: rgba(255, 255, 255, 0.5);
-  overflow: hidden;
-  margin-right: 8px;
-`;
-export const SliderGauge = styled.div`
-  height: 100%;
-  background-color: #fff;
-  transition: all 0.5s;
-  ${({ pagNationNum }) =>
-    pagNationNum &&
+
+export const ArrowIcon = styled.img`
+  ${({ rotate }) =>
+    rotate &&
     css`
-      width: ${33.3 * pagNationNum}%;
+      transform: rotate(${rotate}deg);
     `}
-`;
-export const SliderCount = styled.div`
-  margin-right: 20px;
-  & > p,
-  & > p > span {
-    font-family: "SCDream" !important;
-    font-weight: 600 !important;
-    font-size: 22px !important;
-    color: #fff !important;
-    & > span {
-      opacity: 0.5;
-    }
-  }
-`;
-export const SliderPlayPause = styled.div`
-  & > svg {
-    font-size: 22px;
-    fill: #fff;
-    vertical-align: bottom;
-  }
 `;

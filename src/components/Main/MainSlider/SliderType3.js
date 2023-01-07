@@ -1,32 +1,25 @@
 import React, { useState } from "react";
 import {
+  ArrowIcon,
   SliderContainer,
-  SliderCount,
-  SliderGauge,
   SliderImg,
   SliderImgBox,
-  SliderImgGroup,
   SliderImgLink,
   SliderNav,
   SliderNext,
-  SliderPlayPause,
   SliderPrev,
-  SliderProgressbar,
-  SliderSizeImg,
-  SliderState,
+  SliderSubTitle,
+  SliderSubTxt,
   SliderTitle,
   SliderTransForm,
   SliderTransFormCover,
   SliderTxt,
 } from "./Styled.SliderType3";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { VscDebugPause, VscPlay } from "react-icons/vsc";
 import useInterval from "./useInterval";
 
 function SliderType3({ slideItems3 }) {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [slideReset, setSlideReset] = useState(false);
-  const [slidePlay, setSlidePlay] = useState(true);
 
   let slideMaxLen = slideItems3.length - 1;
 
@@ -43,13 +36,6 @@ function SliderType3({ slideItems3 }) {
   };
 
   let newData = cloneElement();
-
-  const pagNation = () => {
-    if (!(currentIndex === 0 || currentIndex === 4)) return currentIndex;
-    if (currentIndex === 0) return 3;
-    if (currentIndex === 4) return 1;
-  };
-  const pagNationNum = pagNation();
 
   const sliderPrevHandler = (val) => {
     if (slideReset) setSlideReset(false);
@@ -72,7 +58,7 @@ function SliderType3({ slideItems3 }) {
     }
   };
 
-  let delayTime = slidePlay ? 2000 : null;
+  let delayTime = 2000;
 
   const autoPlayEvent = () => {
     if (slideReset) setSlideReset(false);
@@ -87,61 +73,35 @@ function SliderType3({ slideItems3 }) {
     }
   };
 
-  const playPauseHandler = () => setSlidePlay(!slidePlay);
-
-  useInterval(autoPlayEvent, delayTime);
+  // useInterval(autoPlayEvent, delayTime);
 
   return (
     <SliderContainer>
-      <SliderTitle>지금 가장 인기 있는 이벤트</SliderTitle>
+      <SliderTitle>
+        포인트 쌓기
+        <SliderSubTitle>즐거움이 매일매일 쌓이는 포인트 플레이</SliderSubTitle>
+      </SliderTitle>
       <SliderTransFormCover>
         <SliderTransForm currentIndex={currentIndex} slideReset={slideReset}>
           {newData?.map((item) => (
-            <SliderImgGroup key={item.id}>
-              <SliderImgBox>
-                <SliderImgLink to="/">
-                  <SliderSizeImg src="./asset/image/ratio_event.gif" alt="" />
-                  <SliderImg img={item.order[0].img} />
-                </SliderImgLink>
-                <SliderTxt>{item.order[0].pTxt}</SliderTxt>
-              </SliderImgBox>
-              <SliderImgBox>
-                <SliderImgLink to="/">
-                  <SliderSizeImg src="./asset/image/ratio_event.gif" alt="" />
-                  {item.id === 3 ? (
-                    <p>더 많은 이벤트 보러가기</p>
-                  ) : (
-                    <SliderImg img={item.order[1].img} />
-                  )}
-                </SliderImgLink>
-                <SliderTxt>{item.order[1].pTxt}</SliderTxt>
-              </SliderImgBox>
-            </SliderImgGroup>
+            <SliderImgBox key={item.id}>
+              <SliderImgLink to="/">
+                <SliderImg src={`asset/image/${item.img}`} />
+              </SliderImgLink>
+              <SliderTxt>{item.hdTxt}</SliderTxt>
+              <SliderSubTxt>{item.pTxt}</SliderSubTxt>
+            </SliderImgBox>
           ))}
         </SliderTransForm>
       </SliderTransFormCover>
       <SliderNav>
         <SliderPrev onClick={() => sliderPrevHandler(1)}>
-          <IoIosArrowBack />
+          <ArrowIcon src="./asset/image/ic_arrow5.png" />
         </SliderPrev>
         <SliderNext onClick={() => sliderNextHandler(1)}>
-          <IoIosArrowForward />
+          <ArrowIcon src="./asset/image/ic_arrow5.png" rotate="180" />
         </SliderNext>
       </SliderNav>
-      <SliderState>
-        <SliderProgressbar>
-          <SliderGauge pagNationNum={pagNationNum} />
-        </SliderProgressbar>
-        <SliderCount>
-          <p>
-            {pagNationNum}
-            <span> - {slideMaxLen + 1}</span>
-          </p>
-        </SliderCount>
-        <SliderPlayPause onClick={playPauseHandler}>
-          {slidePlay ? <VscDebugPause /> : <VscPlay />}
-        </SliderPlayPause>
-      </SliderState>
     </SliderContainer>
   );
 }
