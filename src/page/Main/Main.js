@@ -8,14 +8,17 @@ import { ContentsBg, ContentsInner } from "../../GlobalStyle";
 function Main() {
   const [slideItems, setSlideItems] = useState([]);
   const [slideItems2, setSlideItems2] = useState([]);
+  const [slideItems3, setSlideItems3] = useState([]);
   const [mouseOver, setMouseOver] = useState("");
 
   useEffect(() => {
     const fetchGetData = async () => {
       const result1 = await getDataFetch("./slideData.json");
       const result2 = await getDataFetch("./slideData2.json");
+      const result3 = await getDataFetch("./slideData3.json");
       setSlideItems(result1);
       setSlideItems2(result2);
+      setSlideItems3(result3);
     };
     fetchGetData();
   }, []);
@@ -37,6 +40,16 @@ function Main() {
           {slideItems2.length && (
             <SliderType2
               slideItems2={slideItems2}
+              setMouseOver={setMouseOver}
+            />
+          )}
+        </ContentsInner>
+      </ContentsBg>
+      <ContentsBg bgColor="#5ccdb5">
+        <ContentsInner max="1284" min="280">
+          {slideItems2.length && (
+            <SliderType2
+              slideItems2={slideItems3}
               setMouseOver={setMouseOver}
             />
           )}
