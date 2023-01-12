@@ -41,8 +41,8 @@ function App() {
         <Container>
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/Stack/*" element={<Stack />} />
             <Route path="/Benefit" element={<Benefit />} />
+            <Route path="/Stack/*" element={<Stack />} />
           </Routes>
         </Container>
         <Footer />

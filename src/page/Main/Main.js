@@ -56,7 +56,7 @@ function Main() {
           )}
         </ContentsInner>
       </ContentsBg>
-      <ContentsBg bgColor="#fafafa">
+      <ContentsBg bgColor="#fafafa" pd="130px 0 180px">
         <ContentsInner max="1284" min="280">
           <PointUse />
         </ContentsInner>

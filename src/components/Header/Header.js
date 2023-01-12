@@ -57,12 +57,19 @@ function Header({ modalState, setModalState }) {
               <NavMenuList>
                 {HeaderListData.map((item, idx) => (
                   <li key={idx}>
-                    <Link to={item.link}>{item.title}</Link>
+                    <Link to={item.link} onClick={leaveStateChangeEvent}>
+                      {item.title}
+                    </Link>
                     {item.sub && (
                       <SubMenuList className="subMenuList">
                         {item.sub.map((item, idx) => (
                           <dd key={idx}>
-                            <Link to={item.link}>{item.title}</Link>
+                            <Link
+                              to={item.link}
+                              onClick={leaveStateChangeEvent}
+                            >
+                              {item.title}
+                            </Link>
                           </dd>
                         ))}
                       </SubMenuList>

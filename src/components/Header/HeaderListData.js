@@ -59,11 +59,11 @@ export const HeaderListData = [
   },
   {
     title: "혜택",
-    link: "/",
+    link: "/Benefit",
     sub: [
       {
         title: "이벤트",
-        link: "/",
+        link: "/Benefit",
       },
       {
         title: "쿠폰",
