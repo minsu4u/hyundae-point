@@ -3,7 +3,6 @@ import { Nav, NavBtn, NavContainer } from "./Styled.BenefitPagination";
 
 function BenefitPagination({ total, limit, page, setPage }) {
   const numOfPages = Math.ceil(total / limit);
-  console.log(Array(numOfPages).fill());
   return (
     <Nav>
       <NavContainer>

@@ -2,19 +2,33 @@ import React from "react";
 import {
   Category,
   Container,
-  InnerContainer,
   ProgressState,
   SearchBar,
   Selects,
 } from "./Styled.BenefitTopInfo";
 import { HiOutlineSearch } from "react-icons/hi";
 
-function BenefitTopInfo({ total, eventData, setEventData }) {
-  const categoryHandler = ({ target: { value } }) => {
+function BenefitTopInfo({
+  total,
+  eventData,
+  filterData,
+  searchState,
+  setFilterState,
+  setFilterData,
+  setSearchState,
+}) {
+  // const categoryHandler = ({ target: { value } }) => {
+  const categoryHandler = (elmVal) => {
+    const valueType = typeof elmVal === "string" ? elmVal : elmVal.target.value;
     const val = eventData.filter(
-      (item) => value.includes(item.category) === true
+      (item) => item.category.includes(valueType) === true
     );
-    console.log(value);
+    setFilterState(valueType);
+    setFilterData(val);
+    console.log(val);
+  };
+  const onChangeHandler = (e) => {
+    setSearchState(e.target.value.toLowerCase());
   };
   return (
     <Container>
@@ -39,8 +53,12 @@ function BenefitTopInfo({ total, eventData, setEventData }) {
           </select>
         </Selects>
         <SearchBar>
-          <input type="text" placeholder="검색어 입력" />
-          <button>
+          <input
+            type="text"
+            placeholder="검색어 입력"
+            onChange={onChangeHandler}
+          />
+          <button onClick={() => categoryHandler(searchState)}>
             <HiOutlineSearch />
           </button>
         </SearchBar>

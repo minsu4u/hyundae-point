@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import Main from "./page/Main/Main";
-import Stack from "./page/Stack/Stack";
+import Customer from "./page/Customer/Customer";
 import Benefit from "./page/Benefit/Benefit";
 import GlobalStyle, { Container } from "./GlobalStyle";
 import Header from "./components/Header/Header";
@@ -33,6 +33,7 @@ function App() {
     };
     window.addEventListener("scroll", scrollBtnShowHandler);
   }, []);
+
   return (
     <div className="App">
       <GlobalStyle />
@@ -41,8 +42,8 @@ function App() {
         <Container>
           <Routes>
             <Route path="/" element={<Main />} />
-            <Route path="/Benefit" element={<Benefit />} />
-            <Route path="/Stack/*" element={<Stack />} />
+            <Route path="/Benefit/*" element={<Benefit />} />
+            <Route path="/Customer/*" element={<Customer />} />
           </Routes>
         </Container>
         <Footer />

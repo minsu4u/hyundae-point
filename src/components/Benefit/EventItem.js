@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import BenefitNullPage from "./BenefitNullPage";
 import {
   Container,
   Dday,
@@ -8,41 +9,50 @@ import {
   TxtBox,
 } from "./Styled.EventItem";
 
-function EventItem({ eventData, offset, limit }) {
-  const prevEndDays = eventData.map((item) => item.endDay);
-  const endDays = prevEndDays.map((item) => item.replaceAll(".", "-"));
-
-  const DdayFn = endDays.map((item) => {
-    const today = new Date();
-    const dDay = new Date(`${item} 00:00:00`);
-    const gapNum = dDay - today;
-    const dDayNum = Math.ceil(gapNum / (1000 * 60 * 60 * 24));
-
-    return item === "2023-12-31" ? "상시" : dDayNum;
-  });
-
-  const eventDataAddDday = eventData.map((item, idx) => ({
-    ...item,
-    dDayNum: DdayFn[idx],
-  }));
-
+function EventItem({
+  eventData,
+  filterData,
+  filterState,
+  offset,
+  limit,
+  setDataLength,
+}) {
+  const changeData = (stateStr) => {
+    switch (stateStr) {
+      case "제휴사별":
+        return eventData;
+      case filterState:
+        return filterData;
+      default:
+        return eventData;
+    }
+  };
+  const newData = changeData(filterState);
+  setDataLength(newData.length);
+  console.log(newData);
   return (
     <Container>
-      {eventDataAddDday.slice(offset, offset + limit).map((item, idx) => (
-        <EventLink key={item.id}>
-          <ImgBox className="imgBox">
-            <img src={"./asset/image/ratio_event.gif"} alt="" />
-            <Img img={item.img}></Img>
-          </ImgBox>
-          <Dday>{item.dDayNum === "상시" ? "상시" : `D-${DdayFn[idx]}`}</Dday>
-          <TxtBox>
-            <h2>{item.title}</h2>
-            <p>
-              {item.startDay} ~ {item.endDay}
-            </p>
-          </TxtBox>
-        </EventLink>
-      ))}
+      {newData.length !== 0 ? (
+        newData.slice(offset, offset + limit).map((item, idx) => (
+          <EventLink key={item.id}>
+            <ImgBox className="imgBox">
+              <img src={"./asset/image/ratio_event.gif"} alt="" />
+              <Img img={item.img}></Img>
+            </ImgBox>
+            <Dday>
+              {item.dDayNum === "상시" ? "상시" : `D-${item.dDayNum}`}
+            </Dday>
+            <TxtBox>
+              <h2>{item.title}</h2>
+              <p>
+                {item.startDay} ~ {item.endDay}
+              </p>
+            </TxtBox>
+          </EventLink>
+        ))
+      ) : (
+        <BenefitNullPage />
+      )}
     </Container>
   );
 }

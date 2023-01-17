@@ -27,23 +27,26 @@ export const H2Txt = styled.h2`
   letter-spacing: -0.5px;
   margin-top: 25px;
   padding-bottom: 25px;
+  white-space: pre-line;
 `;
 export const Tab = styled.ul``;
 export const TabBtn = styled.li`
   display: inline-block;
-`;
-export const TabBtnLink = styled(Link)`
-  padding: 0 30px;
-  font-size: 20px;
-  color: ${({ activate }) => (activate === "true" ? "#111" : "#fff")};
-  background-color: ${({ activate }) =>
-    activate === "true" ? "#fff" : "transparent"};
-  opacity: ${({ activate }) => (activate === "true" ? "1" : "0.5")};
-  border-radius: 25px;
-  display: inline-block;
-  height: 50px;
-  line-height: 50px;
-  &:hover {
-    opacity: ${({ activate }) => activate !== "true" && "1"};
+  & > button {
+    border: 0;
+    padding: 0 30px;
+    font-size: 20px;
+    color: ${({ activate }) => (activate === "true" ? "#111" : "#fff")};
+    background-color: ${({ activate }) =>
+      activate === "true" ? "#fff" : "transparent"};
+    opacity: ${({ activate }) => (activate === "true" ? "1" : "0.5")};
+    border-radius: 25px;
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    &:hover {
+      opacity: ${({ activate }) => activate !== "true" && "1"};
+    }
   }
 `;
+export const TabBtnLink = styled.button``;

@@ -34,3 +34,41 @@ css - styled-components
     GlobalStyle.js
 
     
+customer daily
+
+1.html/css
+CustomerCategory
+Container(article)
+    CategoryWrap(ul) 
+        Category(li)
+
+CustomerInfoSearch
+Container(article)
+Total(div) 
+Search(div)
+    InputSearch(input) ent(button)
+
+CustomerQuestions
+Container(article)
+    QuestionWrap(ul) 
+        Question(li)
+        Title(p)
+        Answer(p)
+
+CustomerPagination
+Container(article)
+    PrevBtn(button)
+    PaginationWrap(ul)
+        PageNum(li)
+    nextBtn(button)
+
+CustomerSimpleCard
+Container(article)
+    SimpieCardWrap(ul)
+        SimpieCard(li)
+            CardLink(Link)
+                CardTxtH1(h1)
+                CardTxtp(h1)
+
+
+
