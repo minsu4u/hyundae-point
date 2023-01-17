@@ -49,7 +49,7 @@ function App() {
         <Footer />
         <AppDownLoadModal open={modalState} close={setModalState} />
         <QuikBar />
-        {scrollTopBtnState && <ScrollTopBtn />}
+        <ScrollTopBtn scrollTopBtnState={scrollTopBtnState} />
       </BrowserRouter>
     </div>
   );

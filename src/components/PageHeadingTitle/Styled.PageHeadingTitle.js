@@ -32,6 +32,8 @@ export const H2Txt = styled.h2`
 export const Tab = styled.ul``;
 export const TabBtn = styled.li`
   display: inline-block;
+`;
+export const TabLink = styled(Link)`
   & > button {
     border: 0;
     padding: 0 30px;

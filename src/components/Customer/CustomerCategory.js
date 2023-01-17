@@ -7,6 +7,8 @@ function CustomerCategory({ tabTitle, innerActivate, setInnerActivate }) {
     setInnerActivate(val);
   };
   const holdingVal = (idx) => (innerActivate === idx ? "true" : "");
+  // todo
+  // 1.탭 별 총 ??갯수 갱신, 탭 상태 갱신
 
   return (
     <Container>

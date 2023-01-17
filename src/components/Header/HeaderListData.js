@@ -135,7 +135,7 @@ export const HeaderListData = [
   },
   {
     title: "고객센터",
-    link: "/Customer",
+    link: "/Customer/Faq",
     sub: [
       {
         title: "FAQ",

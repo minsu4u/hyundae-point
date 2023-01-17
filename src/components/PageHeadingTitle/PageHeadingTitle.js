@@ -5,6 +5,7 @@ import {
   H2Txt,
   Tab,
   TabBtn,
+  TabLink,
 } from "./Styled.PageHeadingTitle";
 
 function PageHeadingTitle({
@@ -15,7 +16,7 @@ function PageHeadingTitle({
   setActivate,
 }) {
   // todo
-  // 1.탭 별 총 ??갯수 갱신, 탭 상태 갱신
+  // 1. FAQ, 1:1문의, 공지사항 link 페이지 구성
   return (
     <Container>
       <H1Txt>{hdTxt}</H1Txt>
@@ -25,10 +26,14 @@ function PageHeadingTitle({
           <TabBtn
             key={idx + 1}
             id={idx + 1}
-            activate={activate === idx + 1 ? "true" : ""}
             onClick={(e) => setActivate(parseInt(e.currentTarget.id))}
           >
-            <button>{item}</button>
+            <TabLink
+              to={item.link}
+              activate={activate === idx + 1 ? "true" : ""}
+            >
+              <button>{item.txt}</button>
+            </TabLink>
           </TabBtn>
         ))}
       </Tab>

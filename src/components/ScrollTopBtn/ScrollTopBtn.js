@@ -2,7 +2,7 @@ import React from "react";
 import { FaAngleUp } from "react-icons/fa";
 import { ScrollBtn } from "./Styled.ScrollTopBtn";
 
-function ScrollTopBtn() {
+function ScrollTopBtn({ scrollTopBtnState }) {
   // html 구조
   //   ScrollBtn(div)>FaAngleUp(svg)
 
@@ -21,7 +21,7 @@ function ScrollTopBtn() {
     });
   };
   return (
-    <ScrollBtn onClick={scrollToTop}>
+    <ScrollBtn onClick={scrollToTop} scrollTopBtnState={scrollTopBtnState}>
       <FaAngleUp />
     </ScrollBtn>
   );

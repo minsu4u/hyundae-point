@@ -1,26 +1,16 @@
 import React, { useState } from "react";
-import CustomerCategory from "../../components/Customer/CustomerCategory";
-import CustomerInfoSearch from "../../components/Customer/CustomerInfoSearch";
+import { Route, Routes } from "react-router-dom";
 import PageHeadingTitle from "../../components/PageHeadingTitle/PageHeadingTitle";
-import { ContentsInner } from "../../GlobalStyle";
-import CustomerPagination from "./CustomerPagination";
-import CustomerQuestions from "./CustomerQuestions";
+import Faq from "./Faq/Faq";
+import PageContainer from "./PageContainer";
 
 function Customer() {
   const [activate, setActivate] = useState(1);
-  const [innerActivate, setInnerActivate] = useState(1);
-  const tabBoxTitle = ["FAQ", "1:1문의", "공지사항", "상담톡문의"];
-  const tabTitle = [
-    "전체",
-    "회원",
-    "포인트",
-    "혜택",
-    "친구",
-    "APP",
-    "충전",
-    "포인트 기부",
-    "포인트워크",
-    "H.Point Pay",
+  const tabBoxTitle = [
+    { txt: "FAQ", link: "/Customer/Faq" },
+    { txt: "1:1문의", link: "/Customer/Que" },
+    { txt: "공지사항", link: "/" },
+    { txt: "상담톡문의", link: "/" },
   ];
   return (
     <>
@@ -31,16 +21,10 @@ function Customer() {
         activate={activate}
         setActivate={setActivate}
       />
-      <CustomerCategory
-        tabTitle={tabTitle}
-        innerActivate={innerActivate}
-        setInnerActivate={setInnerActivate}
-      />
-      <ContentsInner max="1284" min="280px" pd="0 30px">
-        <CustomerInfoSearch />
-        <CustomerQuestions />
-        <CustomerPagination />
-      </ContentsInner>
+      <Routes>
+        {/* <Route path="/*" element={<Faq />} /> */}
+        <Route path=":pages" element={<PageContainer />} />
+      </Routes>
     </>
   );
 }

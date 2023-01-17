@@ -14,6 +14,8 @@ export const ScrollBtn = styled.div`
   right: 30px;
   bottom: 30px;
   display: flex;
+  visibility: ${({ scrollTopBtnState }) =>
+    scrollTopBtnState === true ? "visible" : "hidden"};
   justify-content: center;
   align-items: center;
   box-shadow: 5.142px 6.128px 12.35px 0.65px rgba(25, 48, 88, 0.3);
