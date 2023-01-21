@@ -12,6 +12,7 @@ export const Question = styled.li`
   font-weight: 700;
   font-size: 20px;
   letter-spacing: -0.5px;
+  overflow: hidden;
   transition: all 0.3s;
   &:not(:last-child) {
     margin-bottom: 8px;
@@ -58,6 +59,7 @@ export const Answer = styled.p`
   font-size: 18px;
   line-height: 34px;
   letter-spacing: -0.8px;
+  white-space: pre-line;
   &::before {
     content: "A";
     background-color: #ff481e;

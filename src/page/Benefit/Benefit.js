@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Route, Routes, useLocation, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import getDataFetch from "../../api/getDataFetch";
 import BenefitNullPage from "../../components/Benefit/BenefitNullPage";
 import BenefitPagination from "../../components/Benefit/BenefitPagination";
@@ -21,7 +20,7 @@ function Benefit() {
 
   useEffect(() => {
     const fetchGetData = async () => {
-      const result = await getDataFetch("./eventAlbumData.json");
+      const result = await getDataFetch("/eventAlbumData.json");
 
       const endDays = result.map((item) => item.endDay.replaceAll(".", "-"));
       const DdayFn = endDays.map((item) => {

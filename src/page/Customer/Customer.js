@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import getDataFetch from "../../api/getDataFetch";
 import PageHeadingTitle from "../../components/PageHeadingTitle/PageHeadingTitle";
 import PageContainer from "./PageContainer";
 
 function Customer() {
   const [activate, setActivate] = useState(1);
+  const [faqData, setFaqData] = useState([]);
+
   const tabBoxTitle = [
     { txt: "FAQ", link: "/Customer/Faq" },
     { txt: "1:1문의", link: "" },
     { txt: "공지사항", link: "/Customer/Notice" },
     { txt: "상담톡문의", link: "/" },
   ];
+  useEffect(() => {
+    const fetchGetData = async () => {
+      const result = await getDataFetch("/faqData.json");
+      console.log(result);
+      setFaqData(result);
+    };
+
+    fetchGetData();
+  }, []);
   return (
     <>
       <PageHeadingTitle
