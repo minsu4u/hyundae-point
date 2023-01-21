@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import PageHeadingTitle from "../../components/PageHeadingTitle/PageHeadingTitle";
-import Faq from "./Faq/Faq";
 import PageContainer from "./PageContainer";
 
 function Customer() {
   const [activate, setActivate] = useState(1);
   const tabBoxTitle = [
     { txt: "FAQ", link: "/Customer/Faq" },
-    { txt: "1:1문의", link: "/Customer/Que" },
-    { txt: "공지사항", link: "/" },
+    { txt: "1:1문의", link: "" },
+    { txt: "공지사항", link: "/Customer/Notice" },
     { txt: "상담톡문의", link: "/" },
   ];
   return (
@@ -22,7 +21,6 @@ function Customer() {
         setActivate={setActivate}
       />
       <Routes>
-        {/* <Route path="/*" element={<Faq />} /> */}
         <Route path=":pages" element={<PageContainer />} />
       </Routes>
     </>

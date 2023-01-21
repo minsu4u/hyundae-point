@@ -12,6 +12,7 @@ export const Question = styled.li`
   font-weight: 700;
   font-size: 20px;
   letter-spacing: -0.5px;
+  transition: all 0.3s;
   &:not(:last-child) {
     margin-bottom: 8px;
   }
@@ -34,6 +35,8 @@ export const Question = styled.li`
 export const Title = styled.p`
   padding: 25px 0 25px 60px;
   position: relative;
+  user-select: none;
+  cursor: pointer;
   & > em {
     font-style: normal;
     color: #603de3;
@@ -41,13 +44,13 @@ export const Title = styled.p`
   }
   &::before {
     content: "Q";
-    background-color: ${({ openState }) =>
-      openState === "open" ? "#603de3" : "#999"};
+    background-color: ${({ openValue }) =>
+      openValue === "open" ? "#603de3" : "#999"};
     top: 25px;
   }
 `;
 export const Answer = styled.p`
-  display: ${({ openState }) => (openState === "open" ? "block" : "none")};
+  display: ${({ openValue }) => (openValue === "open" ? "block" : "none")};
   padding: 32px 0 50px 60px;
   position: relative;
   font-family: "Noto Sans KR";
